@@ -3,11 +3,19 @@
 if (empty($_POST["name"])) {
     die("Name is required");
 }
-
-if ( ! filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-    die("Valid email is required");
-}
-
+if ( !preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+      die= "Only letters and white space allowed";
+    }
+    
+if (empty($_POST["email"])) {
+    die = "Email is required";
+  } else {
+    $email = ($_POST["email"]);
+    // check if e-mail address is well-formed
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      die = "Invalid email format";
+    }
+  }
 if (strlen($_POST["password"]) < 8) {
     die("Password must be at least 8 characters");
 }
